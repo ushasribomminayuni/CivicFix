@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise a Complaint | CivicFix</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f6fc;
+            color: #263238;
+        }
+
+        header {
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 760px;
+            margin: 30px auto;
+            padding: 28px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000010;
+        }
+
+        h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font: inherit;
+            background: white;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .required {
+            color: #c62828;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #1769aa;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0d4f87;
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #1769aa;
+            text-decoration: none;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>CivicFix</h1>
+    <p>Report a community problem</p>
+</header>
+
+<main class="container">
+
+    <h2>Raise a Complaint</h2>
+    <p>
+        Please provide accurate contact and location details so the
+        responsible team can investigate the issue.
+    </p>
+
+    <form th:action="@{/complaints}" method="post">
+
+        <h3 class="section-title">Resident Details</h3>
+
+        <div class="field">
+            <label for="residentName">
+                Full Name <span class="required">*</span>
+            </label>
+            <input type="text" id="residentName" name="residentName"
+                   maxlength="150" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+            <label for="mobileNumber">
+                Mobile Number <span class="required">*</span>
+            </label>
+            <input type="tel" id="mobileNumber" name="mobileNumber"
+                   pattern="[0-9]{10}" maxlength="10"
+                   inputmode="numeric" autocomplete="tel"
+                   placeholder="10-digit mobile number" required>
+            <div class="hint">Enter a 10-digit Indian mobile number.</div>
+        </div>
+
+        <h3 class="section-title">Address Details</h3>
+
+        <div class="field">
+            <label for="houseNumber">House / Flat Number</label>
+            <input type="text" id="houseNumber" name="houseNumber"
+                   maxlength="50" placeholder="e.g. 12-4-25">
+        </div>
+
+        <div class="field">
+            <label for="street">Street / Road</label>
+            <input type="text" id="street" name="street"
+                   maxlength="150" placeholder="Street or road name">
+        </div>
+
+        <div class="field">
+            <label for="locality">
+                Locality / Area <span class="required">*</span>
+            </label>
+            <input type="text" id="locality" name="locality"
+                   maxlength="150" placeholder="Enter your area" required>
+        </div>
+
+        <div class="field">
+            <label for="ward">Ward Number / Name</label>
+            <input type="text" id="ward" name="ward"
+                   maxlength="50" placeholder="If known">
+        </div>
+
+        <div class="field">
+            <label for="pinCode">PIN Code</label>
+            <input type="text" id="pinCode" name="pinCode"
+                   pattern="[0-9]{6}" maxlength="6"
+                   inputmode="numeric" placeholder="6-digit PIN code">
+        </div>
+
+        <h3 class="section-title">Complaint Details</h3>
+
+        <div class="field">
+            <label for="title">
+                Complaint Title <span class="required">*</span>
+            </label>
+            <input type="text" id="title" name="title"
+                   maxlength="200"
+                   placeholder="e.g. Damaged road near my house" required>
+        </div>
+
+        <div class="field">
+            <label for="category">
+                Category <span class="required">*</span>
+            </label>
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="Road Damage">Road Damage</option>
+                <option value="Water Supply">Water Supply</option>
+                <option value="Garbage">Garbage Accumulation</option>
+                <option value="Streetlight">Streetlight Problem</option>
+                <option value="Drainage">Drainage / Sewage</option>
+                <option value="Public Safety">Public Safety</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="location">
+                Exact Problem Location / Landmark
+                <span class="required">*</span>
+            </label>
+            <input type="text" id="location" name="location"
+                   maxlength="250"
+                   placeholder="e.g. Near the school entrance"
+                   required>
+            <div class="hint">
+                Describe where the problem is located. It may differ
+                from your home address.
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="description">Describe the Problem</label>
+            <textarea id="description" name="description"
+                      maxlength="2000"
+                      placeholder="Explain the issue and when you noticed it..."></textarea>
+        </div>
+
+        <button type="submit">Submit Complaint</button>
+    </form>
+
+    <div class="back">
+        <a href="/">← Back to Home</a>
+    </div>
+
+</main>
+
+</body>
+</html>

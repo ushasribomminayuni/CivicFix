@@ -1,0 +1,71 @@
+
+# Java compiled files
+*.class
+
+# Maven build output
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# IDE files - IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# IDE files - Eclipse
+.settings/
+.project
+.classpath
+.factorypath
+
+# IDE files - Visual Studio Code
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment files containing passwords or secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration containing secrets
+application-local.properties
+application-secret.properties
+secrets.properties
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+
+# Local database and backup files
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.backup
+
+# Keep Maven wrapper files if present
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties

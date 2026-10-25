@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | CivicFix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            max-width: calc(100% - 60px);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+        h1 { color: #1769aa; text-align: center; }
+        p { text-align: center; color: #555; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .error { color: #c62828; text-align: center; }
+        .link { text-align: center; margin-top: 18px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>CivicFix</h1>
+    <p>Create your resident account</p>
+
+    <p class="error" th:if="${error}" th:text="${error}"></p>
+
+    <form th:action="@{/register}" method="post">
+        <input type="text" name="fullName"
+               placeholder="Full Name" required>
+
+        <input type="text" name="username"
+               placeholder="Username" required>
+
+        <input type="email" name="email"
+               placeholder="Email Address" required>
+
+        <input type="password" name="password"
+               placeholder="Password" minlength="8" required>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <div class="link">
+        Already have an account?
+        <a href="/login">Login</a>
+    </div>
+
+    <div class="link">
+        <a href="/">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>

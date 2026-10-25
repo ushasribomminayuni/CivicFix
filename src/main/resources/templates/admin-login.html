@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | CivicFix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            max-width: calc(100% - 60px);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+        h1 { text-align: center; color: #263b63; }
+        p { text-align: center; color: #555; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: #263b63;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .error { color: #c62828; }
+        a { color: #1769aa; }
+        .link { text-align: center; margin-top: 18px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>CivicFix Admin</h1>
+    <p>Administrator sign in</p>
+
+    <p class="error" th:if="${param.error}">
+        Invalid username or password.
+    </p>
+
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username"
+               placeholder="Admin Username" required>
+
+        <input type="password" name="password"
+               placeholder="Admin Password" required>
+
+        <button type="submit">Admin Login</button>
+    </form>
+
+    <div class="link">
+        <a href="/">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>

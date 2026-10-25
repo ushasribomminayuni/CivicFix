@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login | CivicFix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            max-width: calc(100% - 60px);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+        h1 { color: #1769aa; text-align: center; }
+        p { text-align: center; color: #555; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .error { color: #c62828; }
+        .success { color: #218838; }
+        .link { text-align: center; margin-top: 18px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>CivicFix</h1>
+    <p>Resident Login</p>
+
+    <p class="error" th:if="${param.error}">
+        Invalid username or password.
+    </p>
+
+    <p class="success" th:if="${param.registered}">
+        Account created successfully! Please log in.
+    </p>
+
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username"
+               placeholder="Username" required>
+
+        <input type="password" name="password"
+               placeholder="Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="link">
+        New to CivicFix? <a href="/register">Create an Account</a>
+    </div>
+
+    <div class="link">
+        <a href="/admin/login">Administrator Login</a>
+    </div>
+
+    <div class="link">
+        <a href="/">Back to Home</a>
+    </div>
+</div>
+</body>
+</html>
